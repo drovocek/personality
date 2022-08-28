@@ -1,7 +1,8 @@
-package domain;
+package ru.soft.personality.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@ToString(exclude = {"gifts", "stories"})
 @Table(name = "tag", uniqueConstraints = {
         @UniqueConstraint(
                 columnNames = "name",

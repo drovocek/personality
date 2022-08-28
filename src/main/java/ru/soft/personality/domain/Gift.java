@@ -1,42 +1,52 @@
-package domain;
+package ru.soft.personality.domain;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
-@Entity
 @ToString(exclude = {"tags", "person"})
-@Table(name = "story", uniqueConstraints = {
-        @UniqueConstraint(
-                columnNames = "name",
-                name = "tag_unique_name_idx")})
-public class Story extends AbstractEntity {
+@Entity
+@Table(name = "gift")
+public class Gift extends AbstractEntity {
 
+    @NotNull
+    @NotBlank
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "description")
     private String description;
 
-    private LocalDate startDate;
+    @NotNull
+    @Range(min = 1, max = Integer.MAX_VALUE)
+    @Column(name = "cost", nullable = false)
+    private Integer cost;
 
-    private LocalDate endDate;
+    @Past
+    @NotNull
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
 
     @NotEmpty
     @NotNull
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "Story_Tag",
-            joinColumns = {@JoinColumn(name = "story_id")},
+            name = "Gift_Tag",
+            joinColumns = {@JoinColumn(name = "gift_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )
     private Set<Tag> tags = new HashSet<>();
