@@ -1,4 +1,4 @@
-package ru.soft.personality.domain;
+package ru.soft.personality.app.domain;
 
 import org.hibernate.annotations.Type;
 

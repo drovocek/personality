@@ -1,7 +1,7 @@
-package ru.soft.personality.domain.dao;
+package ru.soft.personality.app.domain.dao;
 
-import ru.soft.personality.domain.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
+import ru.soft.personality.app.domain.Tag;
 
 import java.util.UUID;
 

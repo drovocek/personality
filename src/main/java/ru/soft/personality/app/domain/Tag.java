@@ -1,4 +1,4 @@
-package ru.soft.personality.domain;
+package ru.soft.personality.app.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @Entity
 @ToString(exclude = {"gifts", "stories"})
-@Table(name = "tag", uniqueConstraints = {
+@Table(name = "TAG", uniqueConstraints = {
         @UniqueConstraint(
                 columnNames = "name",
                 name = "tag_unique_name_idx")})
@@ -39,9 +39,9 @@ public class Tag extends AbstractEntity {
     @Column(name = "color_hash", nullable = false)
     private String colorHash;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
     private Set<Story> stories = new HashSet<>();
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
     private Set<Gift> gifts = new HashSet<>();
 }

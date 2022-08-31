@@ -1,4 +1,4 @@
-package ru.soft.personality.domain;
+package ru.soft.personality.app.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +17,7 @@ import java.util.Set;
 @Setter
 @Entity
 @ToString(exclude = {"tags", "person"})
-@Table(name = "story", uniqueConstraints = {
+@Table(name = "STORY", uniqueConstraints = {
         @UniqueConstraint(
                 columnNames = "name",
                 name = "story_unique_name_idx")})
@@ -33,9 +33,9 @@ public class Story extends AbstractEntity {
 
     @NotEmpty
     @NotNull
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(
-            name = "Story_Tag",
+            name = "STORY_TAG",
             joinColumns = {@JoinColumn(name = "story_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )

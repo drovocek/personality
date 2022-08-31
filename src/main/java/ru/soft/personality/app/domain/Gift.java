@@ -1,4 +1,4 @@
-package ru.soft.personality.domain;
+package ru.soft.personality.app.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ import java.util.Set;
 @Setter
 @ToString(exclude = {"tags", "person"})
 @Entity
-@Table(name = "gift")
+@Table(name = "GIFT")
 public class Gift extends AbstractEntity {
 
     @NotNull
@@ -43,9 +43,9 @@ public class Gift extends AbstractEntity {
 
     @NotEmpty
     @NotNull
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(
-            name = "Gift_Tag",
+            name = "GIFT_TAG",
             joinColumns = {@JoinColumn(name = "gift_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )

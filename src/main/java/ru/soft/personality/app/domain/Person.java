@@ -1,4 +1,4 @@
-package ru.soft.personality.domain;
+package ru.soft.personality.app.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @Entity
 @ToString(exclude = {"gifts", "stories"})
-@Table(name = "person")
+@Table(name = "PERSON")
 public class Person extends AbstractEntity {
 
     @NotNull
