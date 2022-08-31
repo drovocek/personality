@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -23,12 +24,18 @@ import java.util.Set;
                 name = "story_unique_name_idx")})
 public class Story extends AbstractEntity {
 
+    @NotBlank
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "description")
     private String description;
 
+    @NotNull
+    @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
 
+    @Column(name = "endDate")
     private LocalDate endDate;
 
     @NotEmpty

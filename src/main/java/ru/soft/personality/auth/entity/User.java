@@ -7,7 +7,6 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -16,7 +15,10 @@ import java.util.UUID;
 @Setter
 @Getter
 @Entity
-@Table(name="user_data")
+@Table(name="USER_DATA", uniqueConstraints = {
+		@UniqueConstraint(
+				columnNames = "email",
+				name = "user_data_email_idx")})
 public class User {
 
 	@Id
@@ -24,7 +26,6 @@ public class User {
 	@Type(type = "uuid-char")
 	private UUID id;
 
-	@NotNull
 	@NotBlank
 	@Column(name = "username", nullable = false)
 	private String username;
@@ -33,10 +34,9 @@ public class User {
 	public Activity activity;
 
 	@Email
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 
-	@NotNull
 	@NotBlank
 	@Column(name = "password", nullable = false)
 	private String password;

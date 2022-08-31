@@ -21,7 +21,6 @@ import java.util.Set;
                 name = "tag_unique_name_idx")})
 public class Tag extends AbstractEntity {
 
-    @NotNull
     @NotBlank
     @Column(name = "name", nullable = false)
     private String name;
@@ -34,7 +33,6 @@ public class Tag extends AbstractEntity {
     @Column(name = "cost", nullable = false)
     private Integer importance;
 
-    @NotNull
     @NotBlank
     @Column(name = "color_hash", nullable = false)
     private String colorHash;

@@ -23,7 +23,6 @@ import java.util.Set;
 @Table(name = "GIFT")
 public class Gift extends AbstractEntity {
 
-    @NotNull
     @NotBlank
     @Column(name = "name", nullable = false)
     private String name;

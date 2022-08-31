@@ -17,17 +17,14 @@ import java.util.List;
 @Table(name = "PERSON")
 public class Person extends AbstractEntity {
 
-    @NotNull
     @NotBlank
     @Column(name = "firstname", nullable = false)
     private String firstname;
 
-    @NotNull
     @NotBlank
     @Column(name = "lastname", nullable = false)
     private String lastname;
 
-    @NotNull
     @NotBlank
     @Column(name = "surname", nullable = false)
     private String surname;
